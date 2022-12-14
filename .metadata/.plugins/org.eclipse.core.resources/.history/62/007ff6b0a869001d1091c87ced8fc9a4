@@ -1,0 +1,35 @@
+// This is a servlet class which uses request Dispatcher and forwards the request to another servlet " Square.java" 
+
+package com.demoservlet;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class displayfullname extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		String name1 = req.getParameter("fname");
+		String name2 = req.getParameter("lname");
+		
+		String name = name1+" "+name2;
+		
+		PrintWriter pw = res.getWriter();
+		RequestDispatcher rd = req.getRequestDispatcher("ami");//passing ami to the request dispatcher , this ami should be mapped 
+		rd.forward(req, res);//simple call
+		//call where we transfer a value from the parent servlet to the child servlet 
+//		ex: user enters two values--> we sum the value and transfer the sum as argument--> then we calculate the 
+//		the square of the sum of the two values provided originally
+		
+		
+//		pw.println("The full name is:"+ name);
+	}
+}
